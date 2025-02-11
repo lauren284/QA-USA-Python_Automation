@@ -17,89 +17,66 @@ def setup_class(cls):
         print("Cannot connect to Urban Routes. Check the server is on and still running")
 def test_set_route(self):
     self.driver.get(data.URBAN_ROUTES_URL)
-    urban_routes_page = UrbanRoutesPage(self.driver)
-    urban_routes_page.enter_from_location(data.ADDRESS_FROM)
-    urban_routes_page.enter_to_location(data.ADDRESS_TO)
-    urban_routes_page.click_call_a_taxi_button()
-    actual_value = urban_routes_page.check_taxi_selector()
-    expected_value = 'Call a taxi'
-    assert actual_value == expected_value
+    routes_page = UrbanRoutesPage(self.driver)
+    routes_page.set_route(data.ADDRESS_FROM, data.ADDRESS_TO)
+        assert routes_page.set_route()
+    == "label"
 
 def test_select_plan(self):
     self.driver.get(data.URBAN_ROUTES_URL)
-    urban_routes_page = UrbanRoutesPage(self.driver)
-    urban_routes_page.enter_from_location(data.ADDRESS_FROM)
-    urban_routes_page.enter_to_location(data.ADDRESS_TO)
-    urban_routes_page.click_custom_option()
-    urban_routes_page.click_taxi_option()
-    urban_routes_page.click_call_taxi_button()
-    urban_routes_page.click_supportive_option()
-    time.sleep(2)
-    assert urban_routes_page.get_supportive_option()
+    routes_page = UrbanRoutesPage(self.driver)
+    routes_page.set_route(data.ADDRESS_FROM, data.ADDRESS_TO)
+    routes_page.select_plan(data.SELECT_PLAN,)
+        assert routes_page.select_plan()
+    == "label"
 
 
 def test_fill_phone_number(self):
     self.driver.get(data.URBAN_ROUTES_URL)
-    urban_routes_page = UrbanRoutesPage(self.driver)
-    urban_routes_page.enter_from_location(data.ADDRESS_FROM)
-    urban_routes_page.enter_to_location(data.ADDRESS_TO)
-    urban_routes_page.click_custom_option()
-    urban_routes_page.click_taxi_option()
-    urban_routes_page.click_call_taxi_button()
-    urban_routes_page.click_supportive_option()
-    time.sleep(2)
-    assert urban_routes_page.get_supportive_option()
+    routes_page = UrbanRoutesPage(self.driver)
+    routes_page.set_route(data.ADDRESS_FROM, data.ADDRESS_TO)
+    routes_page.fill_phone_number(data.fill_phone_number)
+        assert routes_page.fill_phone_number()
+    == "label"
 
 def test_fill_card(self):
     self.driver.get(data.URBAN_ROUTES_URL)
-    urban_routes_page = UrbanRoutesPage(self.driver)
-    urban_routes_page.enter_from_location(data.ADDRESS_FROM)
-    urban_routes_page.enter_to_location(data.ADDRESS_TO)
-    urban_routes_page.click_custom_option()
-    urban_routes_page.click_taxi_option()
-    urban_routes_page.click_call_taxi_button()
-    urban_routes_page.click_supportive_option()
-    time.sleep(2)
-    assert urban_routes_page.get_supportive_option()
+    self.driver.get(data.URBAN_ROUTES_URL)
+    routes_page = UrbanRoutesPage(self.driver)
+    routes_page.set_route(data.ADDRESS_FROM, data.ADDRESS_TO)
+    routes_page.fill_card(data.CARD_NUMBER, data.CARD_CODE)
+        assert routes_page.fill_card()
+    == "label"
 
 def test_comment_for_driver(self):
     self.driver.get(data.URBAN_ROUTES_URL)
-    urban_routes_page = UrbanRoutesPage(self.driver)
-    urban_routes_page.enter_from_location(data.ADDRESS_FROM)
-    urban_routes_page.enter_to_location(data.ADDRESS_TO)
-    urban_routes_page.click_custom_option()
-    urban_routes_page.click_taxi_option()
-    urban_routes_page.click_call_taxi_button()
-    urban_routes_page.click_supportive_option()
-    time.sleep(2)
-    assert urban_routes_page.get_supportive_option()
+    routes_page = UrbanRoutesPage(self.driver)
+    routes_page.set_route(data.ADDRESS_FROM, data.ADDRESS_TO)
+    routes_page.fill_card(data.CARD_NUMBER, data.CARD_CODE)
+    routes_page.enter_message_for_driver(data.MESSAGE_FOR_DRIVER)
+        assert routes_page.get_message()
+    == "label"
 
 def test_order_blanket_and_handkerchiefs(self):
     self.driver.get(data.URBAN_ROUTES_URL)
-    urban_routes_page = UrbanRoutesPage(self.driver)
-    urban_routes_page.enter_from_location(data.ADDRESS_FROM)
-    urban_routes_page.enter_to_location(data.ADDRESS_TO)
-    urban_routes_page.click_custom_option()
-    urban_routes_page.click_taxi_option()
-    urban_routes_page.click_call_taxi_button()
-    urban_routes_page.click_supportive_option()
-    time.sleep(2)
-    assert urban_routes_page.get_supportive_option()
+    routes_page = UrbanRoutesPage(self.driver)
+    routes_page.set_route(data.ADDRESS_FROM, data.ADDRESS_TO)
+    routes_page.fill_card(data.CARD_NUMBER, data.CARD_CODE)
+    routes_page.enter_message_for_driver(data.MESSAGE_FOR_DRIVER)
+    routes_page.order_blanket_and_handkerchiefs(data.ORDER_BLANKET_AND_HANDKERCHIEFS)
+        assert routes_page.order_blanket_and_handkerchiefs()
 
 
 def test_order_2_ice_creams(self):
     number_of_ice_cream = 2
     for ice_cream in range(2):
     self.driver.get(data.URBAN_ROUTES_URL)
-    urban_routes_page = UrbanRoutesPage(self.driver)
-    urban_routes_page.enter_from_location(data.ADDRESS_FROM)
-    urban_routes_page.enter_to_location(data.ADDRESS_TO)
-    urban_routes_page.click_custom_option()
-    urban_routes_page.click_taxi_option()
-    urban_routes_page.click_call_taxi_button()
-    urban_routes_page.click_supportive_option()
+    routes_page = UrbanRoutesPage(self.driver)
+    routes_page.set_route(data.ADDRESS_FROM, data.ADDRESS_TO)
+    routes_page.fill_card(data.CARD_NUMBER, data.CARD_CODE)
+    routes_page.order_2_ice_creams(data.ORDER_2_ICE_CREAMS)
     time.sleep(2)
-    assert urban_routes_page.get_supportive_option()
+    assert routes_page.order_2_ice_creams()
 
 
 @classmethod
